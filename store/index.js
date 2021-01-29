@@ -110,7 +110,6 @@ function getBreadcrumbs (pageType, route, data) {
         title: data.pName,
         url: `/product/${data.pSlug}`
       })
-
       break
 
     default:
@@ -126,7 +125,7 @@ export const state = () => ({
     alsoBuyProducts: [],
     interestingProducts: [],
   },
-  bredcrumbs: []
+  bredcrumbs: [],
 })
 export const mutations = {
   SET_CATEGORIES_LIST (state, categories) {
@@ -139,7 +138,7 @@ export const mutations = {
     state.currentProduct = product
   },
   SET_BREADCRUMBS (state, crumbs) {
-    state.bredcrumbs = crumbs
+    state.bredcrumbs = crumbs;
   },
   RESET_BREADCRUMBS (state) {
     state.bredcrumbs = []
@@ -153,8 +152,9 @@ export const actions = {
     const idsArray = (sampleSize(products, 5)).map(p => p.id)
     return getProductsByIds(products, idsArray)
   },
-  async setBreadcrumbs ({ commit }, data) {
-    await commit('SET_BREADCRUMBS', data)
+  async setBreadcrumbs ({ commit }, crubms, navigation) {
+    await commit('SET_ACTIVE_NAV', navigation);
+    await commit('SET_BREADCRUMBS', crubms);
   },
   async getCategoriesList ({ commit }) {
     try {
@@ -171,7 +171,7 @@ export const actions = {
     const crubms = getBreadcrumbs('category', route, category);
 
     await sleep(300);    
-    await dispatch('setBreadcrumbs', crubms);
+    await dispatch('setBreadcrumbs', crubms, 'category');
     await commit('SET_CURRENT_CATEGORY', addProductsToCategory(products, category));
   },
   async getCurrentProduct ({ commit, dispatch }, { route }) {
@@ -189,7 +189,7 @@ export const actions = {
     const crubms = getBreadcrumbs('product', route, product);
 
     await sleep(300);
-    await dispatch('setBreadcrumbs', crubms);
+    await dispatch('setBreadcrumbs', crubms, 'category');
     await commit('SET_CURRENT_PRODUCT', { ...product, alsoBuyProducts, interestingProducts });
   },
 }

@@ -1,0 +1,60 @@
+.coversContent {
+  .container();
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+.coversHeader {
+  padding: 30px 40px;
+  border-radius: @borderRadius;
+  box-shadow: @shadowBlock;
+}
+
+.coversBlocks {
+  display: flex;
+  padding-top: 20px;
+  margin-left: -20px;
+  margin-right: -20px;
+  flex-wrap: wrap;
+}
+.block {
+  display: flex;
+  padding: 20px 20px;
+  align-items: stretch;
+  margin: 20px 20px;
+  border: 1px solid @grey;
+  border-radius: 20px;
+  width: calc(33.33% - 2px);
+}
+.blockImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 180px;
+  min-width: 100px;
+}
+.blockText {
+  display: flex;
+  padding-left: 12px;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.blockName {
+  padding-bottom: 10px;
+  font-size: 1.2rem;
+  line-height: 1.2em;
+  font-weight: 600;
+}
+.blockFooter {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.blockPrice {
+  font-size: 1.32rem;
+  line-height: 1.2em;
+  font-weight: 300;
+}
+
+

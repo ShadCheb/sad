@@ -1,19 +1,26 @@
 <template>
-  <div>
+  <div class="body">  
     <Header />
+    <Navigation />
     <Breadcrumbs />
     <nuxt />
+    <div class="grow-block" />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from '~~/components/common/Header/Header.vue'
+import Navigation from '~~/components/common/Navigation/Navigation.vue'
 import Breadcrumbs from '~~/components/common/Breadcrumbs/Breadcrumbs.vue'
+import Footer from '~~/components/common/Footer/Footer.vue'
 
 export default {
   components: {
     Header,
     Breadcrumbs,
+    Navigation,
+    Footer,
   },
 
   head () {
@@ -46,3 +53,4 @@ export default {
   }
 }
 </script>
+

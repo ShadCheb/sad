@@ -1,33 +1,88 @@
 // function for Mock API
-const sleep = m => new Promise(r => setTimeout(r, m))
+const sleep = m => new Promise(r => setTimeout(r, m));
+
+const findMax = (array, field) => {
+  if (!array || array.lenght === 0) return 1
+  return Math.max(...array.map(o => o[field]), 0)
+};
 
 export const state = () => ({
   products: [],
+  metaProducts: [],
   version: '0.0.1'
 
 })
+
 export const mutations = {
-  ADD_PRODUCT (state, product) {
+  // Добавляем товар, если его нет в корзине
+  ADD_PRODUCT (state, productId) {
     // if cart doesn't have product add it
-    if (!state.products.find(p => product.id === p.id)) {
-      state.products = [...state.products, product];
+    if (!state.products.find(p => productId === p.productId)) {
+      state.products = [
+        ...state.products, 
+        { 
+          productId, 
+          qty: 1,
+          order: findMax(state.products, 'order') + 1
+        }
+      ]
     }
   },
-  SET_PRODUCT (state, { productId, data }) {
-    state.products = [...state.products.filter(prod => prod.id !== productId), data];
-  },
+  // SET_PRODUCT (state, { productId, data }) {
+  //   state.products = [...state.products.filter(prod => prod.id !== productId), data];
+  // },
+  // Убираем товар
   REMOVE_PRODUCT (state, productId) {
     state.products = Array.from(state.products.filter(prod => prod.id !== productId));
-  }
-
-}
-export const actions = {
-  async addProduct ({ commit }, data) {
-    await sleep(300);
-    await commit('ADD_PRODUCT', data);
   },
-  async removeProduct ({ commit }, productId) {
-    await sleep(300);
-    await commit('REMOVE_PRODUCT', productId);
+  // Меняем количество товара в корзине
+  SET_PRODUCT_QTY (state, { productId, qty }) {
+    state.products = [
+      ...state.products.filter(prod => prod.productId !== productId),
+      { ...state.products.find(prod => prod.productId === productId), qty }
+    ]
+  },
+  // Присваиваем мета-инфу
+  SET_PRODUCTS_BY_IDS (state, products) {
+    state.metaProducts = products
   }
 }
+
+export const actions = {
+  async setProductsListbyIds ({ commit, state }) {
+    await sleep(50);
+    const products = await this.$axios.$get('/mock/products.json');
+    const productsIds = state.products.map(p => p.productId);
+    await commit('SET_PRODUCTS_BY_IDS', mock.getProductsByIds(products, productsIds));
+  },
+  async addProduct ({ commit, dispatch }, data) {
+    await sleep(50);
+    await commit('ADD_PRODUCT', data);
+    await dispatch('setProductsListByIds');
+  },
+  async removeProduct ({ commit, dispatch }, productId) {
+    await sleep(50);
+    await commit('REMOVE_PRODUCT', productId);
+    await dispatch('setProductsListByIds');
+  },
+  async setProductQuantity ({ commit, dispatch }, { productId, qty }) {
+    await sleep(50);
+    await commit('SET_PRODUCT_QTY', { productId, qty });
+    await dispatch('setProductsListbyIds');
+  },
+}
+
+// export const getters = {
+//   getters: {
+//     getProductsInCart: state => {
+//       const products = []
+//       state.products.map(p => {
+//         const metaProduct = state.metaProducts.find(mp => mp.id === p.productId)
+//         if (metaProduct) {
+//           products.push({ ...p, meta: metaProduct })
+//         }
+//       })
+//       return products.sort((a, b) => a.order - b.order)
+//     }
+//   }
+// }

@@ -1,0 +1,26 @@
+.navigation {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: @black;
+}
+.navigationBody {
+  .container();
+}
+.navigationList {
+  display: flex;
+  padding: 0;
+  margin: 0 -20px;
+  list-style: none;
+  & li {
+    position: relative;
+    margin: 0 20px;
+    // &::after
+  }
+  & a {
+    color: white;
+    transition: color .3s ease;
+    &:hover {
+      color: @red;
+    }
+  }
+}

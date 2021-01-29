@@ -36,12 +36,14 @@ module.exports = {
   loading: { color: '#ddd' },
   // Глобальные стили (подгружаемые на каждой странице)
   css: [
-    'normalize.css',
-    './assets/style/global-styles.less'
+    // 'normalize.css',
+    'ant-design-vue/dist/antd.css',
+    './assets/style/global-styles.less',
   ],
   plugins: [
     { src: '~~/plugins/vue-lazy-load.js' },
     { src: '~~/plugins/ant-ui.js' },
+    { src: '~~/plugins/vue-flickity.js', mode: 'client' },
   ],
   // Подключаем Nuxt модули (плагины)
   modules: [
@@ -58,7 +60,7 @@ module.exports = {
   webfontloader: {
     events: false,
     google: {
-      families: ['Montserrat:400,500,600:cyrillic&display=swap']
+      families: ['Montserrat:300,400,500,600,800:cyrillic&display=swap']
     },
     timeout: 5000
   },
@@ -166,7 +168,9 @@ module.exports = {
     },
     // Изменение webpack конфиг перехватывать loaders или ntcn
     extend (config, ctx) {
-      const ORIGINAL_TEST = '/\\.(png|jpe?g|gif|svg|webp)$/i'
+      // const ORIGINAL_TEST = '/\\.(png|jpe?g|gif|svg|webp)$/i';
+      const ORIGINAL_TEST = '/\\.(png|jpe?g|gif|webp)$/i';
+      /*
       const vueSvgLoader = [
         {
           loader: 'vue-svg-loader',
@@ -174,7 +178,8 @@ module.exports = {
             svgo: false
           }
         }
-      ]
+      ];
+      */
       const imageMinPlugin = new ImageminPlugin({
         pngquant: {
           quality: '5-30',
@@ -211,7 +216,8 @@ module.exports = {
           ]
         }
       })
-      //  Create the custom SVG rule
+      /*
+      // Create the custom SVG rule
       const svgRule = {
         test: /\.svg$/,
         oneOf: [
@@ -234,6 +240,7 @@ module.exports = {
       }
 
       config.module.rules.push(svgRule) // Actually add the rule
+      */
     }
   }
 }
