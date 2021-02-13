@@ -150,12 +150,10 @@ export default {
   },
   methods: {
     onCloseDescription() {
-      console.log('=============CLOSE');
       this.isVisibleMDescription = false;
       this.activeCase = '';
     },
     onOpenDescription() {
-      console.log('=============OPEN');
       this.isVisibleMDescription = true;
     },
     onAddToCart(data) {

@@ -26,6 +26,25 @@ module.exports = {
   // Указываем корень проекта
   rootDir: __dirname,
   serverMiddleware: [
+    // Подключаем middleware
+    // Запросы вида http://<server_name>/api/controller_name/method_name
+    // будут искаться в папке /api файл controller_name.js который экспортирует функцию 
+    // с именем method_name
+    { path: '/api', handler: require('body-parser').json() },
+    {
+      path: '/api',
+      handler: (req, res, next) => {
+        // console.log('=============QUERY', req.query);
+
+        const url = require('url');
+        req.query = url.parse(req.url, true).query;
+        req.params = { ...req.query, ...req.body };
+        next();
+      }
+    },
+    {
+      path: '/api', handler: '~/serverMiddleware/api-server.js'
+    }
   ],
   // Отключаем Подрузку страниц, попавших в область видимости окна, сылок
   router: {

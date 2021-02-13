@@ -13,6 +13,8 @@
   min-height: 320px;
   align-items:stretch;
   justify-content: space-between;
+  background: url('../../assets/img/357663-popular-pink-.jpg') no-repeat center;
+  background-size: cover;
   border-radius: @borderRadius;
   box-shadow: @shadowBlock;
 }
@@ -30,7 +32,7 @@
     line-height: 1em;
     font-weight: 800;
     text-align: right;
-    text-shadow: @shadowtext;
+    text-shadow: @shadowText;
   }
   & p {
     font-size: 1.2rem;
@@ -52,29 +54,25 @@
 .blockCase {
   margin: 14px 14px;
   width: 120px;
-  height: 200px;
-  border-radius: 7px;
-  background-color: @black;
-  box-shadow: @shadowBlock;
+  // height: 200px;
+  border-radius: 28px;
+  // background-color: @black;
+  // background: url('../../assets/img/MHL23.png') no-repeat center;
+  box-shadow: 10px 10px 20px 1px rgba(28, 28, 28, 0.25);
   transition: all .3s ease;
   cursor: pointer;
   &:nth-child(1),
   &:nth-child(3),
   &:nth-child(4),
   &:nth-child(6) {
-    background-color: red;
+    // background-color: red;
+    // s
     transform: translateY(50%);
     &:hover {
-      transform: translateY(calc(50% - 40px))  scale(1.02);
+      transform: translateY(50% - 4px)  scale(1.02);
     }
   }
   &:hover {
     transform: translateY(-4px) scale(1.02);
   }
-  /*
-  &:nth-child(2),
-  &:nth-child(5) {
-    margin-top: -40px;
-  }
-  */
 }

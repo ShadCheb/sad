@@ -8,15 +8,18 @@
 .bannerView {
   margin-left: -40px;
   margin-right: -40px;
+  & > * {
+    box-sizing: content-box;
+  }
 }
 .bannerItem {
   width: calc(100% - 80px);
-  height: 420px;
+  height: 480px;
   border-radius: @borderRadius;
   background-color: grey;
   margin-left: 40px;
   margin-right: 40px;
-  box-shadow: @shadowBlock;
+  box-shadow: @shadowBlock;  
 }
 .bannerBtns {
   position: absolute;
@@ -64,12 +67,12 @@
   &::after {
     content: '';
     position: absolute;
-    top: 16px;
+    top: 18px;
     left: 20px;
     width: 14px;
     height: 14px;
-    border-top: 4px solid @black;
-    border-right: 4px solid @black;
+    border-top: 3px solid @black;
+    border-right: 3px solid @black;
     transform: rotate(-135deg);
     transition: all .3s ease;
   }
@@ -78,12 +81,12 @@
   &::after {
     content: '';
     position: absolute;
-    top: 16px;
+    top: 18px;
     left: 14px;
     width: 14px;
     height: 14px;
-    border-top: 4px solid @black;
-    border-right: 4px solid @black;
+    border-top: 3px solid @black;
+    border-right: 3px solid @black;
     transform: rotate(45deg);
   }
 }

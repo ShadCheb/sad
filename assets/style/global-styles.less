@@ -147,7 +147,7 @@ img {
   border-radius: 24px;
   border: none;
   background-color: @red;
-  box-shadow: 0 5px 14px 0 rgba(255,0,102,.4);
+  box-shadow: 0 5px 20px 0 rgba(255, 0, 102, 0.62);
   outline: none;
   transition: all .3s ease;
   cursor: pointer;
@@ -167,8 +167,8 @@ img {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   color: white;
-  border-radius: 24px;
   border: none;
+  border-radius: 24px;
   background-color: @red;
   outline: none;
   transition: all .3s ease;
@@ -177,11 +177,145 @@ img {
     background-color: @redHover;
   }
 }
+.btn-3_border {
+  padding: 7px 18px;
+  color: @red;
+  border: 1px solid @red;
+  background-color: transparent;
+  &:hover {
+    color: @redHover;
+    background-color: transparent;
+    border-color: @redHover;
+  }
+}
 
 // ant
+.modal {
+  & .ant-modal-content {
+    border-radius: 20px;
+    box-shadow: @shadowBlock;
+  }
+}
 
-.modal .ant-modal-content {
-  border-radius: 20px;
-  box-shadow: @shadowBlock;
+.ant-select-focused .ant-select-selection,
+.ant-select-selection:focus,
+.ant-select-selection:active {
+  border-color: @red;
+  box-shadow: 0 0 0 2px @redOpacity;
+}
+.ant-select-selection:hover {
+  border-color: @red;
+}
+.ant-select-dropdown-menu-item:hover:not(.ant-select-dropdown-menu-item-disabled),
+.ant-select-dropdown-menu-item-active:not(.ant-select-dropdown-menu-item-disabled) {
+  background-color: @redLight;
+}
+
+.ant-breadcrumb {
+  & a:hover {
+    color: @red;
+  }
+}
+.ant-breadcrumb-separator {
+  color: @red;
+}
+
+.ant-select {
+  width: 100%;
+}
+
+
+.ant-select-auto-complete.ant-select .ant-input:focus,
+.ant-select-auto-complete.ant-select .ant-input:hover {
+  border-color: @red;
+}
+.ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+  border-color: @red;
+}
+.ant-input:focus {
+  box-shadow: 0 0 0 2px @redOpacity;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: @redLight;
+}
+
+
+// .ant-dropdown-menu {
+//   box-shadow: @shadowBlock;
+// }
+// .ant-dropdown-menu-item-active {
+//   &:hover {
+//     background-color: @redLight;
+//   }
+// }
+// .cart-icon_white.ant-dropdown-open {
+//   & svg {
+//     fill: @red;
+//   }
+// }
+
+.cart-icon {
+  width: 100%;
+}
+.cart-icon__link {
+  & svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+.nav-search {
+  width: 44px;
+  transition: width .3s ease;
+  .ant-input {
+    border-color: transparent;
+  }
+  & .ant-select-selection {
+    background-color: transparent;
+    border-color: transparent;
+  }
+  & svg {
+    fill: white;
+    transform: scale(1.3);
+    transition: all .3s ease;
+  }
+  &.active {
+    width: 100%;
+    & .ant-select-selection {
+      background-color: white;
+      border-color: @red;
+    }
+    .ant-input-affix-wrapper .ant-input:not(:last-child) {
+      padding-right: 30px;
+    }
+    & svg {
+      fill: @black;
+      transform: scale(1);
+    }
+  }
+}
+.ant-input-affix-wrapper .ant-input:not(:last-child) {
+  padding-right: 10px;
+}
+
+
+// Card-tooltip
+.tooltip {
+  & .ant-tooltip-inner {
+    padding: 10px;
+    color: @black;
+    background-color: white;
+    width: 320px;
+    border-radius: 10px;
+    transform: translateX(-70px);
+    box-shadow: @shadowBlock;
+  }
+}
+.cart-icon {
+  & .ant-tooltip-open {
+    fill: @red;
+  }
 }
 

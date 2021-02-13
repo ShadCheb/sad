@@ -7,58 +7,113 @@
             <h2>Trends summer 2020</h2>
           </div>
         </div>
+
+        <div :class="$style.coversFilters">
+          <div>
+
+          </div>
+          <div>
+            
+          </div>
+        </div>
+
         <div :class="$style.coversBlocks">
           <div :class="$style.block">
-            <div :class="$style.blockImg">
-
-            </div>
-            <div :class="$style.blockText">
-              <h2 :class="$style.blockName">Название чехла 1</h2>
-              <div :class="$style.blockFooter">
-                <p :class="$style.blockPrice">Р 390</p>
-                <button
-                  class="btn-3"
-                  @click="onOpenDescription('idx')"
-                >Подробнее</button>
+            <div>
+              <div :class="$style.blockImg">
+                <img
+                  v-lazy="require('~/assets/img/0429-03.png')"
+                  alt="Название чехла 1"
+                >
+              </div>
+              <div :class="$style.blockText">
+                <h2 :class="$style.blockName">Название чехла 1</h2>
+                <div :class="$style.footer">
+                  <div :class="$style.footerPrice">
+                    <p :class="$style.price">Р 390</p>
+                  </div>
+                  <div :class="$style.footerBtn">
+                    <button
+                      class="btn-3"
+                      @click="onOpenDescription('idx')"
+                    >Подробнее</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           <div :class="$style.block">
-            <div :class="$style.blockImg">
-
-            </div>
-            <div :class="$style.blockText">
-              <h2 :class="$style.blockName">Название чехла 1</h2>
-              <div :class="$style.blockFooter">
-                <p :class="$style.blockPrice">Р 390</p>
-                <button class="btn-3">Подробнее</button>
+            <div>
+              <div :class="$style.blockImg">
+                <img
+                  v-lazy="require('~/assets/img/0429-03.png')"
+                  alt="азвание чехла 1"
+                >
+              </div>
+              <div :class="$style.blockText">
+                <h2 :class="$style.blockName">Название чехла 1</h2>
+                <div :class="$style.footer">
+                  <div :class="$style.footerPrice">
+                    <p :class="$style.price">Р 390</p>
+                  </div>
+                  <div :class="$style.footerBtn">
+                    <button
+                      class="btn-3"
+                      @click="onOpenDescription('idx')"
+                    >Подробнее</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           <div :class="$style.block">
-            <div :class="$style.blockImg">
-
-            </div>
-            <div :class="$style.blockText">
-              <h2 :class="$style.blockName">Название чехла 1</h2>
-              <div :class="$style.blockFooter">
-                <p :class="$style.blockPrice">Р 390</p>
-                <button class="btn-3">Подробнее</button>
+            <div>
+              <div :class="$style.blockImg">
+                <img
+                  v-lazy="require('~/assets/img/0429-03.png')"
+                  alt="азвание чехла 1"
+                >
+              </div>
+              <div :class="$style.blockText">
+                <h2 :class="$style.blockName">Название чехла 1</h2>
+                <div :class="$style.footer">
+                  <div :class="$style.footerPrice">
+                    <p :class="$style.price">Р 390</p>
+                  </div>
+                  <div :class="$style.footerBtn">
+                    <button
+                      class="btn-3"
+                      @click="onOpenDescription('idx')"
+                    >Подробнее</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           <div :class="$style.block">
-            <div :class="$style.blockImg">
-
-            </div>
-            <div :class="$style.blockText">
-              <h2 :class="$style.blockName">Название чехла 1</h2>
-              <div :class="$style.blockFooter">
-                <p :class="$style.blockPrice">Р 390</p>
-                <button class="btn-3">Подробнее</button>
+            <div>
+              <div :class="$style.blockImg">
+                <img
+                  v-lazy="require('~/assets/img/0429-03.png')"
+                  alt="азвание чехла 1"
+                >
+              </div>
+              <div :class="$style.blockText">
+                <h2 :class="$style.blockName">Название чехла 1</h2>
+                <div :class="$style.footer">
+                  <div :class="$style.footerPrice">
+                    <p :class="$style.price">Р 390</p>
+                  </div>
+                  <div :class="$style.footerBtn">
+                    <button
+                      class="btn-3"
+                      @click="onOpenDescription('idx')"
+                    >Подробнее</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -66,55 +121,81 @@
       </div>
     </div>
 
-    <!-- <ModalDescription
-      v-if="isVisibleMDescription"
-      :case="activeCase"
-      @onClose="onCloseDescription"
-      @onAddToCart="onAddToCart"
-    /> -->
-
     <a-modal
       v-model="isVisibleMDescription"
       title=""
       :footer="null"
       class="modal"
+      :width="600"
     >
-      <div>
-        <div>
-          <div>
-            <a-select
-              show-search
-              :default-value="defaultModel"
-              @change="onChangeModel"
-            >
-              <a-select-option
-                v-for="model in optionsModel"
-                :key="model.id"
-                :value="model.brief"
-              >
-                {{ model.name }}
-              </a-select-option>
-            </a-select>
+      <div :class="$style.cart">
+        <div :class="$style.cartImg">
+          <img
+            v-lazy="require('~/assets/img/0429-03.png')"
+            alt="азвание чехла 1"
+          >
+        </div>
+        <div :class="$style.cartDescription">
+          <div :class="$style.cartHeader">
+            <p :class="$style.cartName">
+              Название чехла 1
+            </p>
+            <p :class="$style.cartPrice">
+              Р 390
+            </p>
           </div>
-          <div>
-            <a-select
-              :default-value="defaultMaterial"
-              @change="onChangeMaterial"
-            >
-              <a-select-option
-                v-for="material in optionsMaterial"
-                :key="material.id"
-                :value="material.brief"
+          <div :class="$style.cartSelects">
+            <div :class="$style.select">
+              <p :class="$style.selectLabel">
+                Модель
+              </p>
+              <!-- :default-value="defaultModel" -->
+              <a-select
+                show-search
+                placeholder="Выберите модель"
+                @change="onChangeModel"
               >
-                {{ material.name }}
-              </a-select-option>
-            </a-select>
+                <a-select-option
+                  v-for="model in optionsModel"
+                  :key="model.id"
+                  :value="model.brief"
+                >
+                  {{ model.name }}
+                </a-select-option>
+              </a-select>
+            </div>
+            <div :class="$style.select">
+              <p :class="$style.selectLabel">
+                Материал
+              </p>
+              <!-- :default-value="defaultMaterial" -->
+              <a-select
+                placeholder="Выберите материал"
+                @change="onChangeMaterial"
+              >
+                <a-select-option
+                  v-for="material in optionsMaterial"
+                  :key="material.id"
+                  :value="material.brief"
+                >
+                  {{ material.name }}
+                </a-select-option>
+              </a-select>
+            </div>
           </div>
-          <div>
+          <div :class="$style.cartBtns">
+            <button
+              class="btn-3 btn-3_border"
+              @click="onAddToCart"
+            >
+              Заказать
+            </button>
             <button
               class="btn-3"
               @click="onAddToCart"
-            >В корзину</button>
+            >
+              В корзину
+            </button>
           </div>
         </div>
       </div>
@@ -214,8 +295,8 @@ export default {
           addCost: 100,
         },
       ],
-      defaultModel: 'iphone7',
-      defaultMaterial: 'shockproof',
+      // defaultModel: 'iphone7',
+      // defaultMaterial: 'shockproof',
 
       data: {
         material: '',

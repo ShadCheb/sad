@@ -3,7 +3,10 @@
     <div :class="$style.headerBody">
       <n-link :class="$style.headerLogo" to="/">
         <!-- <img src="~/assets/img/logo_color_white.png"> -->
-        <img src="~/assets/svg/logo_color_black.svg">
+        <img
+          src="~/assets/svg/logo_color_black.svg"
+          alt="Tifity логотип"
+        >
       </n-link>
       <div :class="[$style.social, $style.headerSocail]">
         <a

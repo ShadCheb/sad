@@ -20,15 +20,51 @@
             </div>
           </div>
           <div :class="$style.blockExample">
-            <div :class="$style.blockCase"></div>
-            <div :class="$style.blockCase"></div>
-            <div :class="$style.blockCase"></div>
-            <div :class="$style.blockCase"></div>
-            <div :class="$style.blockCase"></div>
-            <div :class="$style.blockCase"></div>
-            <div :class="$style.blockCase"></div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
           </div>
         </div>
+
         <div :class="$style.block">
           <div :class="$style.blockHead">
             <div :class="$style.blockCaption">
@@ -47,13 +83,48 @@
             </div>
           </div>
           <div :class="$style.blockExample">
-            <div :class="$style.blockCase"></div>
-            <div :class="$style.blockCase"></div>
-            <div :class="$style.blockCase"></div>
-            <div :class="$style.blockCase"></div>
-            <div :class="$style.blockCase"></div>
-            <div :class="$style.blockCase"></div>
-            <div :class="$style.blockCase"></div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
+            <div :class="$style.blockCase">
+              <img
+                v-lazy="require('~/assets/img/MHL23.png')"
+                alt="Название чехла 1"
+              >
+            </div>
           </div>
         </div>
       </div>
