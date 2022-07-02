@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.main">
+  <!-- <div :class="$style.main">
     <div :class="$style.mainBanner">
       <Banner />
     </div>
@@ -11,28 +11,23 @@
     </div>
 
 
-    <!-- <h1>Интернет-магазин "Хвостики"</h1>
-    <CategoriesList
-      :categories="categories"
-    /> -->
-  </div>
+  </div> -->
+
+  <Main />
 </template>
 
 <script>
-// import CategoriesList from '~~/components/common/CategoriesList/CategoriesList'
-import Banner from '~~/components/main/Banner/Banner'
-import Catalog from '~~/components/main/Catalog/Catalog'
-import Maps from '~~/components/main/Maps/Maps'
-import { mapState } from 'vuex'
+// import Banner from '~~/components/main/Banner/Banner'
+// import Catalog from '~~/components/main/Catalog/Catalog'
+// import Maps from '~~/components/main/Maps/Maps'
+import Main from '~~/components/main/Main/Main';
 
 export default {
   components: {
-    Banner,
-    Catalog,
-    Maps,
-    // CategoriesList
+    Main,
   },
-  async asyncData ({ app, route, params, error, store }) {
+  // app, route, params, error, store
+  async asyncData({}) {
     // try {
     //   await store.dispatch('getCategoriesList');
     // } catch (err) {
@@ -48,9 +43,9 @@ export default {
     //   categories: 'categoriesList'
     // })
   },
-}
+};
 </script>
 
 <style lang="less" module>
-  @import url('./style.less');
+// @import url('./style.less');
 </style>

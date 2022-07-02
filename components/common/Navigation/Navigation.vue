@@ -3,22 +3,15 @@
     <div :class="$style.navigationContainer">
       <div :class="$style.navigationBlock">
         <ul :class="$style.navigationList">
-          <li
-            v-for="item in list"
-            :key="item.id"
-          >
-            <n-link
-              :to="item.url"
-            >
+          <li v-for="item in list" :key="item.id">
+            <n-link :to="item.url">
               {{ item.title }}
             </n-link>
           </li>
         </ul>
         <div :class="$style.navigationRight">
           <!-- class="nav-search" -->
-          <div
-            :class="[{ active: searchText }, `nav-search` ]"
-          >
+          <div :class="[{ active: searchText }, `nav-search`]">
             <a-auto-complete
               v-model="searchText"
               class="nav-search__compite"
@@ -36,19 +29,11 @@
             </a-auto-complete>
           </div>
 
-          <div
-            :class="[$style.cart, 'cart-icon' ]"
-          >
-            <div
-              v-if="numFilterOfGoods"
-              :class="$style.cartNum"
-            >
+          <div :class="[$style.cart, 'cart-icon']">
+            <div v-if="numFilterOfGoods" :class="$style.cartNum">
               {{ numFilterOfGoods }}
             </div>
-            <a-tooltip
-              placement="bottomRight"
-              overlay-class-name="tooltip"
-            >
+            <a-tooltip placement="bottomRight" overlay-class-name="tooltip">
               <template slot="title">
                 <div :class="$style.cartlistList">
                   <div :class="$style.cartlistItem">
@@ -56,33 +41,20 @@
                       <img
                         v-lazy="require('~/assets/img/0429-03.png')"
                         alt="Название чехла 1"
-                      >
+                      />
                     </div>
                     <div :class="$style.cartlistDescription">
-                      <p :class="$style.cartlistName">
-                        Название чехла 1
-                      </p>
+                      <p :class="$style.cartlistName">Название чехла 1</p>
                       <div :class="$style.cartlistCharacteristics">
-                        <p :class="$style.cartlistCount">
-                          iPhone 11 Pro Max
-                        </p>
-                        <p :class="$style.cartlistCount">
-                          Противоударный
-                        </p>
-                        <p :class="$style.cartlistCount">
-                          1 шт.
-                        </p>
+                        <p :class="$style.cartlistCount">iPhone 11 Pro Max</p>
+                        <p :class="$style.cartlistCount">Противоударный</p>
+                        <p :class="$style.cartlistCount">1 шт.</p>
                       </div>
                       <div :class="$style.cartlistItemFooter">
-                        <p :class="$style.cartlistPrice">
-                          Р 390
-                        </p>
+                        <p :class="$style.cartlistPrice">Р 390</p>
                       </div>
                       <a :class="$style.cartlistDel">
-                        <a-icon
-                          slot="suffix"
-                          type="delete"
-                        />
+                        <a-icon slot="suffix" type="delete" />
                       </a>
                     </div>
                   </div>
@@ -91,33 +63,20 @@
                       <img
                         v-lazy="require('~/assets/img/0429-03.png')"
                         alt="Название чехла 1"
-                      >
+                      />
                     </div>
                     <div :class="$style.cartlistDescription">
-                      <p :class="$style.cartlistName">
-                        Название чехла 1
-                      </p>
+                      <p :class="$style.cartlistName">Название чехла 1</p>
                       <div :class="$style.cartlistCharacteristics">
-                        <p :class="$style.cartlistCount">
-                          iPhone 11 Pro Max
-                        </p>
-                        <p :class="$style.cartlistCount">
-                          Противоударный
-                        </p>
-                        <p :class="$style.cartlistCount">
-                          1 шт.
-                        </p>
+                        <p :class="$style.cartlistCount">iPhone 11 Pro Max</p>
+                        <p :class="$style.cartlistCount">Противоударный</p>
+                        <p :class="$style.cartlistCount">1 шт.</p>
                       </div>
                       <div :class="$style.cartlistItemFooter">
-                        <p :class="$style.cartlistPrice">
-                          Р 390
-                        </p>
+                        <p :class="$style.cartlistPrice">Р 390</p>
                       </div>
                       <a :class="$style.cartlistDel">
-                        <a-icon
-                          slot="suffix"
-                          type="delete"
-                        />
+                        <a-icon slot="suffix" type="delete" />
                       </a>
                     </div>
                   </div>
@@ -126,33 +85,20 @@
                       <img
                         v-lazy="require('~/assets/img/0429-03.png')"
                         alt="Название чехла 1"
-                      >
+                      />
                     </div>
                     <div :class="$style.cartlistDescription">
-                      <p :class="$style.cartlistName">
-                        Название чехла 1
-                      </p>
+                      <p :class="$style.cartlistName">Название чехла 1</p>
                       <div :class="$style.cartlistCharacteristics">
-                        <p :class="$style.cartlistCount">
-                          iPhone 11 Pro Max
-                        </p>
-                        <p :class="$style.cartlistCount">
-                          Противоударный
-                        </p>
-                        <p :class="$style.cartlistCount">
-                          1 шт.
-                        </p>
+                        <p :class="$style.cartlistCount">iPhone 11 Pro Max</p>
+                        <p :class="$style.cartlistCount">Противоударный</p>
+                        <p :class="$style.cartlistCount">1 шт.</p>
                       </div>
                       <div :class="$style.cartlistItemFooter">
-                        <p :class="$style.cartlistPrice">
-                          Р 390
-                        </p>
+                        <p :class="$style.cartlistPrice">Р 390</p>
                       </div>
                       <a :class="$style.cartlistDel">
-                        <a-icon
-                          slot="suffix"
-                          type="delete"
-                        />
+                        <a-icon slot="suffix" type="delete" />
                       </a>
                     </div>
                   </div>
@@ -162,12 +108,7 @@
                   <p :class="$style.cartlistTotalValue">Р 320</p>
                 </div>
                 <div :class="$style.cartlistBtn">
-                  <n-link
-                    to="/cart"
-                    class="btn-4"
-                  >
-                    Заказать
-                  </n-link>
+                  <n-link to="/cart" class="btn-4"> Заказать </n-link>
                 </div>
               </template>
               <svg>
@@ -186,50 +127,15 @@ export default {
   data() {
     return {
       navigation: '',
-      list: [
-        {
-          id: 0,
-          url: '#0',
-          title: 'О нас',
-          type: 'about',
-        },
-        {
-          id: 1,
-          url: '/catalog',
-          title: 'Каталог',
-          type: 'catalog',
-        },
-        {
-          id: 2,
-          url: '#0',
-          title: 'Промо-акции',
-          type: 'stock',
-        },
-        {
-          id: 3,
-          url: '#0',
-          title: 'Вопрос-ответ',
-          type: 'question',
-        },
-        {
-          id: 4,
-          url: '#0',
-          title: 'Вакансии',
-          type: 'vacancy',
-        },
-      ],
-
-      searchText: '',
+      list: [],
 
       numberOfGoods: 3,
-    }
+    };
   },
   computed: {
     numFilterOfGoods() {
-      return this.numberOfGoods > 9
-        ? '>9'
-        : '' + this.numberOfGoods
-    }
+      return this.numberOfGoods > 9 ? '>9' : '' + this.numberOfGoods;
+    },
   },
   methods: {
     onFocusSearch() {
@@ -242,10 +148,10 @@ export default {
         this.searchText = '';
       }
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="less" module>
-  @import url('./Navigation.less');
+@import url('./Navigation.less');
 </style>

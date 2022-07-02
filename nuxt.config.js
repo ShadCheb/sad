@@ -34,8 +34,6 @@ module.exports = {
     {
       path: '/api',
       handler: (req, res, next) => {
-        // console.log('=============QUERY', req.query);
-
         const url = require('url');
         req.query = url.parse(req.url, true).query;
         req.params = { ...req.query, ...req.body };
@@ -63,6 +61,8 @@ module.exports = {
     { src: '~~/plugins/vue-lazy-load.js' },
     { src: '~~/plugins/ant-ui.js' },
     { src: '~~/plugins/vue-flickity.js', mode: 'client' },
+    { src: '~/plugins/api-context.client.js' },
+    { src: '~/plugins/api-context.server.js' },
   ],
   // Подключаем Nuxt модули (плагины)
   modules: [
@@ -72,7 +72,9 @@ module.exports = {
     'nuxt-webfontloader',
     'cookie-universal-nuxt',
     '@nuxtjs/style-resources',
-    'nuxt-vuex-localstorage'
+    'nuxt-vuex-localstorage',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
 
   // Конфиг для модуля nuxt-webfontloader

@@ -1,41 +1,12 @@
 .header {
-  padding-top: 10px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid @grey;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
-.headerBody {
+.body {
   .container();
   display: flex;
+  padding-right: 20px;
   justify-content: space-between;
 }
-.headerLogo {
-  width: 120px;
-}
-.headerSocail {
-
-}
-.social {
-  display: flex;
-  margin-left: -10px;
-  margin-right: -10px;
-  align-items: center;
-}
-.socialIcon {
-  margin-left: 10px;
-  margin-right: 10px;
-  font-size: 0;
-  line-height: 0;
-  color: transparent;
-  width: 26px;
-  height: 26px;
-  & svg {
-    fill: @black;
-    width: 100%;
-    height: 100%;
-    transition: fill .3s ease;
-    &:hover {
-      fill: @red;
-    }
-  }
-}
-
