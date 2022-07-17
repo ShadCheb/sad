@@ -1,15 +1,15 @@
-import Vue from 'vue'
-import VueLazyload from 'vue-lazyload'
+import Vue from 'vue';
+import VueLazyload from 'vue-lazyload';
 
 export default async (context, inject) => {
   Vue.use(VueLazyload, {
     preLoad: 0,
     error: 'https://via.placeholder.com/300',
     // eslint-disable-next-line
-    loading: require(`${'~~/assets/img/loading.png'}`),
+    loading: require(`${'~~/assets/img/giphy.gif'}`),
     attempt: 3,
     lazyComponent: true,
     observer: true,
-    throttleWait: 500
-  })
-}
+    throttleWait: 500,
+  });
+};

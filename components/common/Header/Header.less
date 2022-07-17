@@ -1,12 +1,64 @@
 .header {
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
+  right: 50%;
+  transform: translateX(620px);
+  z-index: 15;
+
+  @media (max-width: 1280px) {
+    right: 30px;
+    transform: translateX(0);
+  }
 }
-.body {
-  .container();
+.headerButtons {
   display: flex;
-  padding-right: 20px;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin-left: 0;
+  margin-right: 0;
+}
+.headerButton {
+  display: flex;
+  padding: 30px 12px 20px 12px;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: @white;
+  box-shadow: 0 0 18px 3px rgba(28, 28, 28, 0.14);
+  transition: all 0.3s ease;
+  & img {
+    width: 100%;
+    height: 100%;
+  }
+  &:hover {
+    padding-top: 40px;
+  }
+}
+.headerButtonIcon {
+  position: relative;
+  height: 30px;
+  width: 30px;
+}
+.headerButtonGreen {
+  background-color: @red;
+}
+
+.headerNum {
+  position: absolute;
+  top: 0;
+  right: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  line-height: 10px;
+  color: @black;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: @white;
+  pointer-events: none;
 }

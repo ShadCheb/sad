@@ -1,8 +1,6 @@
 <template>
   <div class="body">
     <Header />
-    <Navigation />
-    <Breadcrumbs />
     <nuxt />
     <div class="grow-block" />
     <Footer />
@@ -11,15 +9,11 @@
 
 <script>
 import Header from '~~/components/common/Header/Header.vue';
-// import Navigation from '~~/components/common/Navigation/Navigation.vue'
-// import Breadcrumbs from '~~/components/common/Breadcrumbs/Breadcrumbs.vue'
 import Footer from '~~/components/common/Footer/Footer.vue';
 
 export default {
   components: {
     Header,
-    // Breadcrumbs,
-    // Navigation,
     Footer,
   },
 
@@ -30,9 +24,7 @@ export default {
       .replace(/\/$/, '')}`;
     return {
       meta: [...this.meta],
-      script: [
-        // { src: 'https://markknol.github.io/console-log-viewer/console-log-viewer.js' }
-      ],
+      script: [],
       link: [{ rel: 'canonical', href: canonical }],
     };
   },
@@ -45,7 +37,24 @@ export default {
           content:
             'width=device-width, initial-scale=1, maximum-scale=1 shrink-to-fit=no',
         },
-        { hid: 'description', name: 'description', content: 'Главная' },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content: require('~/assets/img/Mz8_Rc-KtCE.jpeg'),
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Плодовые (деревья и кустарники), декоротивные (хвойные и лиственные),' +
+            'многолетние цветы - все это Вы можете приобрести по цене производителя' +
+            'как оптом, так и в розницу. Так же мы с удовольствием поможем Вам не' +
+            'только выбрать растения, но и проконсультируем как посадить и' +
+            'ухаживать за саженцами . Вы можете заказывать доставку и посадку в' +
+            'любую точку Чувашской республики и соседних городов. Так же наше' +
+            'заведение занимается озеленением и благоустройством территории и' +
+            'приусадебных участвком "Под ключ".',
+        },
       ];
     },
   },

@@ -1,0 +1,9 @@
+// ID приложения	6725945
+export const SECURE_KEY = '1O7U3QUSXJqIwAgpaJxs';
+export const ACCES_TOKEN =
+  '14f0b09514f0b09514f0b095a4149611ac114f014f0b0954f395a5d2b3f0d3eeed233b6';
+export const VERSION_VK_API = '5.131';
+export const ENDPOINT = 'https://api.vk.com/method/';
+export const GROUP_ID = '158973078';
+export const ACCES_TOKEN_VK =
+  'vk1.a.INMcIARKa5Qn8BA2R8PchaDOMN-O37WdNJ2P8NRMHaA0Wl80vZnNNci-yUS0FOwMepPyQDAs9C8C5fv5aDFq0LQkIishe6nmYYKfGe-IIueGKhNCaXHGxPPUZG2bB5AiBl7oIJbenGb16e0ieRoz4ueh5vub7dy-xXXUmCDxjjST6YOX5aOcTHI2gRbpjhWp';

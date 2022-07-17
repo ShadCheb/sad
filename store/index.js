@@ -1,195 +1,118 @@
-const sampleSize = require('lodash.samplesize');
+const getDateFormat = (ms) => {
+  const date = new Date(ms);
 
-const sleep = m => new Promise(r => setTimeout(r, m));
-const categories = [
-  {
-    id: 'cats',
-    cTitle: 'Котики',
-    cName: 'Котики',
-    cSlug: 'cats',
-    cMetaDescription: 'Мета описание',
-    cDesc: 'Описание',
-    cImage: 'https://source.unsplash.com/300x300/?cat,cats',
-    products: []
-  },
-  {
-    id: 'dogs',
-    cTitle: 'Собачки',
-    cName: 'Собачки',
-    cSlug: 'dogs',
-    cMetaDescription: 'Мета описание',
-    cDesc: 'Описание',
-    cImage: 'https://source.unsplash.com/300x300/?dog,dogs',
-    products: []
-  },
-  {
-    id: 'wolfs',
-    cTitle: 'Волчки',
-    cName: 'Волчки',
-    cSlug: 'wolfs',
-    cMetaDescription: 'Мета описание',
-    cDesc: 'Описание',
-    cImage: 'https://source.unsplash.com/300x300/?wolf',
-    products: []
-  },
-  {
-    id: 'bulls',
-    cTitle: 'Бычки',
-    cName: 'Бычки',
-    cSlug: 'bulls',
-    cMetaDescription: 'Мета описание',
-    cDesc: 'Описание',
-    cImage: 'https://source.unsplash.com/300x300/?bull',
-    products: []
-  }
-];
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate() + 1).padStart(2, '0');
 
-
-function getProductsByIds (products, ids) {
-  const innerProducts = products.filter(p => p.id === ids.find(id => p.id === id));
-  if (!innerProducts) return null;
-  return innerProducts.map(pr => {
-    return {
-      ...pr,
-      category: categories.find(cat => cat.id === pr.category_id)
-    }
-  })
-}
-
-function addProductsToCategory (products, category) {
-  const categoryInner = { ...category, products: [] };
-
-  products.map(p => {
-    if (p.category_id === category.id) {
-      categoryInner.products.push({
-        id: p.id,
-        pName: p.pName,
-        pSlug: p.pSlug,
-        pPrice: p.pPrice,
-        image: `https://source.unsplash.com/300x300/?${p.pName}`
-      })
-    }
-  })
-
-  return categoryInner;
-}
-
-function getProduct (products, productSlug) {
-  const innerProduct = products.find(p => p.pSlug === productSlug);
-
-  if (!innerProduct) return null;
-
-  innerProduct.image = `https://source.unsplash.com/300x300/?${innerProduct.category_id}`
-
-  return {
-    ...innerProduct,
-    // images: productsImages.find(img => img.id === innerProduct.id).urls,
-    category: categories.find(cat => cat.id === innerProduct.category_id)
-  }
-}
-
-function getBreadcrumbs (pageType, route, data) {
-  const crumbs = []
-  crumbs.push({
-    title: 'Главная',
-    url: '/'
-  })
-  switch (pageType) {
-    case 'category':
-      crumbs.push({
-        title: data.cName,
-        url: `/category/${data.cSlug}`
-      })
-      break
-    case 'product':
-      crumbs.push({
-        title: data.category.cName,
-        url: `/category/${data.category.cSlug}`
-      })
-      crumbs.push({
-        title: data.pName,
-        url: `/product/${data.pSlug}`
-      })
-      break
-
-    default:
-      break
-  }
-  return crumbs
-}
+  return `${day}.${month}.${year}`;
+};
 
 export const state = () => ({
   categoriesList: [],
-  currentCategory: {},
-  currentProduct: {
-    alsoBuyProducts: [],
-    interestingProducts: [],
-  },
-  bredcrumbs: [],
-})
+  productsCategory: [],
+  reviews: [],
+  loadingProducts: false,
+});
 export const mutations = {
-  SET_CATEGORIES_LIST (state, categories) {
+  SET_REVIEWS(state, reviews) {
+    state.reviews = reviews;
+  },
+  SET_CATEGORIES_LIST(state, categories) {
     state.categoriesList = categories;
   },
-  SET_CURRENT_CATEGORY (state, category) {
-    state.currentCategory = category;
+  SET_PRODUCTS_LIST(state, products) {
+    state.productsCategory = products;
   },
-  SET_CURRENT_PRODUCT (state, product) {
-    state.currentProduct = product
+  SET_LOADING_PRODUCTS(state, value) {
+    state.loadingProducts = value;
   },
-  SET_BREADCRUMBS (state, crumbs) {
-    state.bredcrumbs = crumbs;
-  },
-  RESET_BREADCRUMBS (state) {
-    state.bredcrumbs = []
-  },
-  GET_PRODUCTS_BY_IDS () {},
-}
+};
 export const actions = {
-  async getProductsListByIds ({ commit }) {
-    const products = await this.$axios.$get('/mock/products.json');
-    commit('GET_PRODUCTS_BY_IDS');
-    const idsArray = (sampleSize(products, 5)).map(p => p.id)
-    return getProductsByIds(products, idsArray)
-  },
-  async setBreadcrumbs ({ commit }, crubms, navigation) {
-    await commit('SET_ACTIVE_NAV', navigation);
-    await commit('SET_BREADCRUMBS', crubms);
-  },
-  async getCategoriesList ({ commit }) {
+  async getReviewsList({ commit }) {
     try {
-      await sleep(300);
-      await commit('SET_CATEGORIES_LIST', categories);
+      const request = await this.$axios.$get('/api/review/list');
+
+      if (!request.success || request.result?.error) throw Error();
+
+      const response = request.result.response;
+      const result = [];
+
+      const profilesKeys = response.profiles.reduce((prev, current) => {
+        prev[current.id] = {
+          id: current.id,
+          photo: current.photo_100,
+          first_name: current.first_name,
+          last_name: current.last_name,
+        };
+
+        return prev;
+      }, {});
+
+      response.items.forEach((item) => {
+        // Проверяем, является ли сообщение ответом на другое сообщение
+        if (item.text && !item.text.startsWith('[id')) {
+          const itemResult = {
+            id: item.id,
+            profile: profilesKeys[item.from_id],
+            text: item.text,
+            date: getDateFormat(item.date * 1000),
+          };
+
+          result.push(itemResult);
+        }
+      });
+
+      commit('SET_REVIEWS', result);
     } catch (err) {
-      console.error(err);
-      throw new Error('Внутреняя ошибка сервера, сообщите администратору');
+      console.error('Error getReviewsList. ', err);
     }
   },
-  async getCurrentCategory ({ commit, dispatch }, { route }) {
-    const category = categories.find((cat) => cat.cSlug === route.params.CategorySlug);
-    const products = await this.$axios.$get('/mock/products.json');
-    const crubms = getBreadcrumbs('category', route, category);
 
-    await sleep(300);    
-    await dispatch('setBreadcrumbs', crubms, 'category');
-    await commit('SET_CURRENT_CATEGORY', addProductsToCategory(products, category));
+  async getCategoriesList({ commit }) {
+    try {
+      const request = await this.$axios.$get('/api/albums/category');
+
+      if (!request.success || request.result?.error) throw Error();
+      const result = (request.result.response?.items || []).map((item) => {
+        const sizeM = (item.photo.sizes || []).find(
+          (size) => size.type === 'm'
+        );
+
+        return {
+          id: item.id,
+          title: item.title,
+          photo: sizeM.url,
+        };
+      });
+
+      await commit('SET_CATEGORIES_LIST', result);
+    } catch (err) {
+      console.warn('Error getCategoriesList. ', err);
+    }
   },
-  async getCurrentProduct ({ commit, dispatch }, { route }) {
-    const productSlug = route.params.ProductSlug;
-    const [products, alsoBuyProducts, interestingProducts] = await Promise.all(
-      [
-        this.$axios.$get('/mock/products.json'),
-        dispatch('getProductsListByIds'),
-        dispatch('getProductsListByIds')
-      ]
-    );
-    const product = getProduct(products, productSlug);
+  async getProducts({ commit }, { albumId }) {
+    try {
+      commit('SET_LOADING_PRODUCTS', true);
 
-    console.log('product', product);
-    const crubms = getBreadcrumbs('product', route, product);
+      const request = await this.$axios.$post('/api/albums/products', {
+        id: albumId,
+      });
+      const result = (request.result.response?.items || []).map((item) => {
+        return {
+          id: item.id,
+          title: item.title,
+          description: item.description,
+          photo: item.thumb_photo,
+          price: item.price.text,
+        };
+      });
 
-    await sleep(300);
-    await dispatch('setBreadcrumbs', crubms, 'category');
-    await commit('SET_CURRENT_PRODUCT', { ...product, alsoBuyProducts, interestingProducts });
+      await commit('SET_PRODUCTS_LIST', result);
+      commit('SET_LOADING_PRODUCTS', false);
+    } catch (err) {
+      console.warn('Error getProducts. ', err);
+      commit('SET_LOADING_PRODUCTS', false);
+    }
   },
-}
+};

@@ -1,41 +1,36 @@
 .maps {
-  padding-top: 60px;
-  padding-bottom: 60px;
-  background-color: @black;
 }
 .mapsContainer {
+  padding-top: 60px;
+  padding-bottom: 60px;
   .container();
+
+  background-color: @white;
 }
 .mapsBlock {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: white;
+  position: relative;
+  height: 420px;
+  border-radius: 20px;
+  background-color: @greyDark;
+  overflow: hidden;
 }
-.mapsColLeft {
-  width: 33.33%;
-}
-.mapsTextOne {
-  padding-left: 20px;
-  font-size: 2rem;
-  line-height: 1.2em;
-  font-weight: 600;
-  text-align: right;
-}
-.mapsColCenter {
-  width: 33.33%;
-}
-.mapsTextTwo {
-  font-size: 2rem;
-  line-height: 1.2em;
-  font-weight: 600;
-  text-align: center;
-  & strong {
-    color: @red;
+.mapsAddress {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(40, 40, 40, 0.7);
+  box-shadow: 0 0 18px 3px rgba(28, 28, 28, 0.14);
+  z-index: 5;
+
+  & p {
+    color: @white;
+  }
+
+  @media (max-width: 540px) {
+    top: 10px;
+    left: 10px;
+    right: 10px;
   }
 }
-.mapsColRight {
-  padding-right: 20px;
-  width: 33.33%;
-}
-

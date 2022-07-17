@@ -7,6 +7,11 @@ body {
   font-weight: 400;
   color: @black;
   background: white;
+
+  @media (max-width: 576px) {
+    font-size: 14px;
+    line-height: 1.2em;
+  }
 }
 .body {
   display: flex;
@@ -30,6 +35,9 @@ ul {
 a {
   text-decoration: none;
   color: @black;
+  &:hover {
+    color: @black;
+  }
 }
 img {
   display: block;
@@ -118,6 +126,7 @@ img {
   transition: all 0.3s ease;
   cursor: pointer;
   &:hover {
+    color: white;
     background-color: @redHover;
   }
   &:active {
@@ -136,6 +145,7 @@ img {
   border: none;
   border-radius: 24px;
   background-color: @red;
+  border: 1px solid @red;
   outline: none;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -146,13 +156,16 @@ img {
 .btn-3_border {
   padding: 7px 18px;
   color: @red;
-  border: 1px solid @red;
   background-color: transparent;
   &:hover {
     color: @redHover;
     background-color: transparent;
     border-color: @redHover;
   }
+}
+.btn-3_grey {
+  color: @greyDark;
+  border-color: @greyDark;
 }
 
 // ant
@@ -233,7 +246,7 @@ img {
   &.active {
     width: 100%;
     & .ant-select-selection {
-      background-color: white;
+      background-color: @white;
       border-color: @red;
     }
     .ant-input-affix-wrapper .ant-input:not(:last-child) {
@@ -265,4 +278,30 @@ img {
   & .ant-tooltip-open {
     fill: @red;
   }
+}
+
+.title-h2 {
+  margin-bottom: 30px;
+  font-size: 1.72rem;
+  line-height: 1.2em;
+  font-weight: 600;
+}
+.text-p {
+  margin-bottom: 12px;
+  text-indent: 20px;
+  line-height: 1.7em;
+}
+
+.ant-spin-dot-item {
+  background-color: @red;
+}
+.ant-drawer-body {
+  height: 100%;
+}
+
+.ant-input:hover {
+  border-color: @red;
+}
+.ant-input:focus {
+  box-shadow: 0 0 0 2px rgba(36, 163, 25, 0.2);
 }

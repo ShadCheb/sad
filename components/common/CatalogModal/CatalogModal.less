@@ -1,0 +1,83 @@
+.catalogModal {
+}
+.catalogModalTitle {
+  position: relative;
+  margin-bottom: 30px;
+
+  & > h2 {
+    position: relative;
+    font-size: 1.7rem;
+    line-height: 1.2em;
+    font-weight: 700;
+    z-index: 5;
+  }
+  & > p {
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    font-size: 5.8rem;
+    line-height: 1em;
+    font-weight: 700;
+    color: @grey;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    opacity: 0.3;
+    z-index: 1;
+  }
+}
+.catalogModalLoading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200;
+}
+.catalogModalCarts {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -10px;
+  margin-right: -10px;
+  z-index: 1;
+
+  @media (max-width: 720px) {
+    justify-content: center;
+  }
+}
+.catalogModalCartItem {
+  display: flex;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 40px;
+  flex-direction: column;
+  width: calc(25% - 40px);
+
+  @media (max-width: 960px) {
+    width: calc(33.33% - 40px);
+  }
+  @media (max-width: 720px) {
+    margin-right: 12px;
+    margin-left: 12px;
+    margin-bottom: 24px;
+    width: calc(50% - 24px);
+    max-width: 262px;
+  }
+  @media (max-width: 720px) {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    width: calc(100% - 20px);
+  }
+}
+
+.descriptionModal {
+}
+.descriptionModalTitle {
+  margin-bottom: 14px;
+  font-size: 1.2rem;
+  line-height: 1.2em;
+  font-weight: 500;
+}
+.descriptionModalText {
+}
