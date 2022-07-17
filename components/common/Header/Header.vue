@@ -25,12 +25,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import sprite from '~/assets/svg/sprite.svg?sprite';
 
 export default {
-  data() {
-    return { sprite };
-  },
   computed: {
     ...mapState({
       visible: (state) => state.cart.visible,
