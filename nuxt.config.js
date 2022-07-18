@@ -96,6 +96,7 @@ module.exports = {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#optionss
+    proxy: true
   },
   proxy: [
     'http://87.249.53.232',
