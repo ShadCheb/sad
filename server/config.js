@@ -6,4 +6,4 @@ export const VERSION_VK_API = '5.131';
 export const ENDPOINT = 'https://api.vk.com/method/';
 export const GROUP_ID = '158973078';
 export const ACCES_TOKEN_VK =
-  'vk1.a.INMcIARKa5Qn8BA2R8PchaDOMN-O37WdNJ2P8NRMHaA0Wl80vZnNNci-yUS0FOwMepPyQDAs9C8C5fv5aDFq0LQkIishe6nmYYKfGe-IIueGKhNCaXHGxPPUZG2bB5AiBl7oIJbenGb16e0ieRoz4ueh5vub7dy-xXXUmCDxjjST6YOX5aOcTHI2gRbpjhWp';
+  'vk1.a.jWHrmTF7t8g7IpstMoBZ9wlyHTCthX4ihhmZhIeaW5Xf3zcyl6Xzv331jFdwdZJPUM2dSu7MfZz8sM-GvIS1OboRcF93rGIEwYVxVLYvxjBgnvn_Vy9l8sgzolkRvgrhMl_9kzyjVwMKex1oEuZvY-Sk81mvw1T1PPCTE2vNGFSlZEVA1CnJGDJ0AhfSneEE';
