@@ -15,7 +15,6 @@
           >
             Vk
             <img :src="require('~/assets/img/vk.png')" alt="vk" />
-            <VkIcon />
           </a>
         </div>
 

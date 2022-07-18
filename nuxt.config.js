@@ -56,7 +56,7 @@ module.exports = {
   // Подключаем Nuxt модули (плагины)
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    ['@nuxtjs/proxy', { ws: false }],
+    // ['@nuxtjs/proxy', { ws: false }],
     '@nuxtjs/svg',
     '@nuxtjs/axios',
     'nuxt-trailingslash-module',
@@ -98,10 +98,10 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#optionss
     proxy: true
   },
-  proxy: [
-    'http://87.249.53.232',
-    'http://localhost:3000/api/*',
-  ],
+  // proxy: [
+  //   'http://87.249.53.232',
+  //   'http://localhost:3000/api/*',
+  // ],
   vuexLocalstorage: {
     ...(isDev && {
       mode: 'debug',
