@@ -7,8 +7,8 @@ module.exports = {
     },
     {
       name: "nuxt-prod",
-      script: "npm",
-      args: "run start"
+      script: "server/index.js",
+      args: "start"
     }
   ]
 }
