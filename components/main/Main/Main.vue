@@ -1,37 +1,42 @@
 <template>
   <div :class="$style.main">
-    <div :class="$style.container">
+    <div :class="$style.mainContainer">
       <div :class="$style.blockText">
         <div :class="$style.blockTextInfo">
-          <a href="tel:+79279934519">+7(927) 993-45-19</a>
-          <p>Бесплатная доставка от 1000 руб.</p>
-        </div>
-
-        <div :class="$style.socials">
+          <p :class="$style.blockTextTime">
+            Пн-Вс: 9.00-19.00
+          </p>
           <a
-            :class="$style.socialIcon"
+            :class="$style.blockTextPhone"
+            href="tel:+79279934519"
+          >
+            +7(927) 993-45-19
+          </a>
+          <a
+            :class="$style.blockTextVk"
             href="https://vk.com/vanushkinsad"
             target="_blank"
           >
-            Vk
+            Группа ВКонтакте
             <img :src="require('~/assets/img/vk.png')" alt="vk" />
           </a>
         </div>
 
-        <h2 :class="$style.aboveTitle">семена, саженцы</h2>
-        <h1 :class="$style.title">Ванюшкин Сад</h1>
-        <h3 :class="$style.underTitle">Чебоксары</h3>
-
-        <a href="#catalog" :class="['btn-2', $style.button]">Каталог</a>
-      </div>
-      <div :class="$style.blockImages">
-        <picture>
-          <source
-            :srcset="require('~/assets/img/main_m.png')"
-            media="(max-width: 768px)"
-          />
-          <img :srcset="require('~/assets/img/main.png')" alt="Ванюшкин сад" />
-        </picture>
+        <div :class="$style.title">
+          <div :class="$style.titleMain">
+            <h1>Питомник "Ванюшкин Сад"</h1>
+          </div>
+          <div :class="$style.titleBlock">
+            <p>Широкий выбор декоративных расстений и кустарников различного возраста и размера</p>
+            <p>Чебоксары</p>
+          </div>
+          <div :class="$style.titleLink">
+            <a href="#catalog">
+              <img :src="require('~/assets/img/right.png')" alt="right" />
+              Посмотреть каталог
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

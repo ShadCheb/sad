@@ -1,21 +1,20 @@
 <template>
   <div v-if="review" :class="[$style.reviewItem, className]">
     <div :class="$style.reviewItemImage">
-      <Photo
+      <img
         v-if="review.profile.photo"
-        :img="review.profile.photo"
-        :class="$style.reviewItemPhoto"
+        :src="review.profile.photo"
       />
     </div>
     <div :class="$style.reviewItemText">
-      <h2 v-if="review.profile" :class="$style.reviewItemName">
+      <p v-if="review.profile" :class="$style.reviewItemName">
         {{
           `${review.profile.first_name || ''} ${
             review.profile.last_name
           }`.trim()
         }}
-      </h2>
-      <p class="text-p">
+      </p>
+      <p :class="$style.reviewItemContext">
         {{ review.text || '' }}
       </p>
       <p :class="$style.reviewItemDate">
@@ -28,9 +27,6 @@
 <script>
 export default {
   name: 'ReviewItem',
-  components: {
-    Photo: () => import('~~/components/common/Photo/Photo'),
-  },
   props: {
     review: Object,
     className: String,

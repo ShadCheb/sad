@@ -21,7 +21,7 @@
         <div :class="$style.cartCount">Количество</div>
       </div>
       <div v-for="item in products" :key="item.id" :class="$style.cartRow">
-        <div :class="$style.cartName">
+        <div :class="$style.cartName" v-if="item.product">
           {{ item.product.title }}
         </div>
         <div :class="$style.cartCount">

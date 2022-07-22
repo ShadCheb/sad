@@ -17,25 +17,29 @@
 }
 .reviewBody {
   display: flex;
-  margin-left: -20px;
-  margin-right: -20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
   flex-wrap: wrap;
 
   @media (max-width: 960px) {
-    margin-left: 0;
-    margin-right: 0;
+    width: 100%;
   }
 }
 .reviewBlock {
-  margin-left: 20px;
-  margin-right: 20px;
   margin-bottom: 40px;
-  width: calc(50% - 40px);
+  width: 100%;
 
   @media (max-width: 960px) {
-    margin-left: 0;
-    margin-right: 0;
     margin-bottom: 30px;
-    width: 100%;
+  }
+}
+.reviewBtn {
+  display: flex;
+  margin-top: 40px;
+  justify-content: center;
+
+  @media (max-width: 540px) {
+    margin-top: 20px;
   }
 }

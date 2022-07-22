@@ -4,37 +4,56 @@
       <h2 class="title-h2">Каталог</h2>
 
       <div :class="$style.catalogBlocks">
-        <CatalogItem
+        <CatalogRow
           v-for="categorie in categories"
           :key="categorie.id"
-          :styleName="$style.catalogItem"
-          :data="categorie"
+          :styleName="$style.catalogRow"
+          :isMore="moreData[categorie.id] || categorie.products.length < 9"
+          :categorie="categorie"
+          :onMore="onMore"
           :onOpenDescription="onOpenDescription"
         />
       </div>
     </div>
 
-    <CatalogModal
-      :isVisible="isVisible"
-      :activeCategory="activeCategory"
-      :onClose="onCloseDescription"
-    />
+    <a-modal
+      v-model="isVisibleDescription"
+      title=""
+      :footer="null"
+      class="modal"
+      :width="width"
+      @cancel="onCloseDescription"
+    >
+      <div v-if="activeProduct" :class="$style.descriptionModal">
+        <h2 :class="$style.descriptionModalTitle">
+          {{ activeProduct.title }}
+        </h2>
+        <p :class="$style.descriptionModalText">
+          {{ activeProduct.description }}
+        </p>
+      </div>
+    </a-modal>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState } from 'vuex';
+
+const WIDTH = 960;
 
 export default {
   name: 'Catalog',
   components: {
-    CatalogItem: () => import('./CatalogItem/CatalogItem'),
-    CatalogModal: () => import('~/components/common/CatalogModal/CatalogModal'),
+    CatalogRow: () => import('./CatalogRow/CatalogRow'),
   },
   data() {
     return {
+      width: WIDTH,
       isVisible: false,
       activeCategory: null,
+      moreData: {}, // ОБъект с открытыми Посмотреть еще
+      isVisibleDescription: false,
+      activeProduct: null,
     };
   },
   computed: {
@@ -42,18 +61,35 @@ export default {
       categories: (state) => state.categoriesList,
     }),
   },
+  mounted() {
+    window.addEventListener('resize', this.getDimensions);
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.getDimensions);
+  },
   methods: {
-    ...mapActions({
-      getProducts: 'getProducts',
-    }),
-    onCloseDescription() {
-      this.activeCategory = undefined;
-      this.isVisible = false;
+    // ...mapActions({
+    //   getProducts: 'getProducts',
+    // }),
+    onMore(id) {
+      this.moreData = {
+        ...this.moreData,
+        [id]: true,
+      }
     },
-    onOpenDescription(item) {
-      this.activeCategory = item;
-      this.isVisible = true;
-      this.getProducts({ albumId: item.id });
+
+    onCloseDescription() {
+      this.isVisibleDescription = false;
+      this.activeProduct = null;
+    },
+    onOpenDescription(product) {
+      this.activeProduct = product;
+      this.isVisibleDescription = true;
+    },
+    getDimensions() {
+      const width = document.documentElement.clientWidth;
+
+      this.width = width >= 960 ? WIDTH : '100%';
     },
   },
 };

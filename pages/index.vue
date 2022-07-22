@@ -1,16 +1,14 @@
 <template>
-  <div :class="$style.main">
-    <div :class="$style.mainContainer">
-      <Main />
-      <Nursery />
-      <About />
-      <Catalog />
-      <Review />
-      <Maps />
+  <div>
+    <Main />
+    <Nursery />
+    <About />
+    <Catalog />
+    <Review />
+    <Maps />
 
-      <Drawer />
-      <CartModal />
-    </div>
+    <Drawer />
+    <CartModal />
   </div>
 </template>
 
@@ -44,11 +42,7 @@ export default {
         store.dispatch('getCategoriesList'),
         store.dispatch('getReviewsList'),
       ]);
-      // await app.store.dispatch('getCategoriesList', {
-      //   categoryId: this.categoryId,
-      // });
     } catch (err) {
-      console.log('=========ERR_1', err);
       return error({
         statusCode: 404,
         message: 'Категории не найдены или сервер не доступен',

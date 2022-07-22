@@ -10,6 +10,15 @@
           :className="$style.reviewBlock"
         />
       </div>
+      <div :class="$style.reviewBtn">
+        <a
+          class="btn-2"
+          href="https://vk.com/topic-158973078_37810122"
+          target="_blank"
+        >
+          Посмотреть все
+        </a>
+      </div>
     </div>
   </div>
 </template>
