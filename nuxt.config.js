@@ -9,6 +9,7 @@ module.exports = {
   ...(!isDev && {
     modern: 'client',
   }),
+  ssr: false,
 
   // Дефолтный head для страниц
   head: {
@@ -69,11 +70,16 @@ module.exports = {
       'nuxt-mail',
       {
         message: {
-          to: 'test0@test.com',
+          to: 'vas.box@mail.ru',
         },
         smtp: {
-          host: 'smtp.mail.ru',
+          host: 'smtp.yandex.ru',
           port: 465,
+          secure: true,
+          auth: {
+            user: 't3.t3st@yandex.ru',
+            pass: 'Rapira15'
+          },
         },
       },
     ],

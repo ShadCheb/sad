@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { notification } from 'ant-design-vue';
 import { mapActions, mapState } from 'vuex';
 
 const WIDTH = 960;
@@ -60,7 +61,29 @@ export default {
     ...mapState({
       visible: (state) => state.cart.visible,
       products: (state) => state.cart.products,
+      success: (state) => state.cart.success,
+      error: (state) => state.cart.error,
     }),
+  },
+  watch: {
+    // эта функция запускается при любом изменении вопроса
+    success(newValue, oldValue) {
+      if (newValue && newValue !== oldValue) {
+        notification.open({
+          message: 'Заказ успешно оформлен',
+          description:
+            'Ваш заказ оформлен, в ближайшее время с вами свяжется менеджер для его подтверждения.',
+        });
+      }
+    },
+    error(newValue, oldValue) {
+      if (newValue && newValue !== oldValue) {
+        notification.open({
+          message: 'Ошибка',
+          description: newValue,
+        });
+      }
+    }
   },
   mounted() {
     window.addEventListener('resize', this.getDimensions);
@@ -78,10 +101,18 @@ export default {
     }),
     onOrder() {
       if (!this.inputValue || !this.products.length) {
-        // TODO: Уведомление об ошибке
+        notification.open({
+          message: 'Ошибка',
+          description:
+            'Заполнены не все поля. Введите номер телефона и выберите необходимую продукцию',
+        });
+
         return;
       }
+
       this.order(this.inputValue);
+      this.changeVisibleMenu();
+      this.inputValue = '';
     },
 
     getDimensions() {

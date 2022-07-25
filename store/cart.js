@@ -1,6 +1,8 @@
 export const state = () => ({
   visible: false,
   products: [],
+  success: false,
+  error: ''
 });
 
 export const mutations = {
@@ -42,6 +44,12 @@ export const mutations = {
   SET_CHANGE_CART_VISIBLE(state) {
     state.visible = !state.visible;
   },
+  CHANGE_SUCCESS(state, value) {
+    state.success = value;
+  },
+  SET_ERROR(state, value) {
+    state.error = value;
+  }
 };
 
 export const actions = {
@@ -57,14 +65,30 @@ export const actions = {
   changeVisibleMenu({ commit }) {
     commit('SET_CHANGE_CART_VISIBLE');
   },
-  async order({ commit }, phone) {
-    // Отправить заказ
-    commit('REMOVE_PRODUCTS');
+  async order({ commit, state }, phone) {
+    try {
+      this.$mail.send({
+        from: 't3.t3st@yandex.ru',
+        subject: 'Incredible',
+        text: JSON.stringify({
+          phone,
+          products: state.products.map(product => ({
+            name: product.product?.title || '-',
+            qty: product.qty,
+            price: product.product?.price?.text || '0',
+          }))
+        }),
+      });
 
-    this.$mail.send({
-      from: 'Order',
-      subject: 'Incredible',
-      text: `Phone: ${phone} \n ${JSON.stringify(state.products)}`,
-    });
+      await commit('CHANGE_SUCCESS', true);
+      setTimeout(() => {
+        commit('CHANGE_SUCCESS', false);
+      }, 300);
+    } catch(err) {
+      await commit('SET_ERROR', 'При отправке произошла ошибка. Попробуйте оформить заказ позже или позвоните для этого по телефону');
+      setTimeout(() => {
+        commit('SET_ERROR', '');
+      }, 300);
+    }
   },
 };
