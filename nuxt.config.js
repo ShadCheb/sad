@@ -70,7 +70,7 @@ module.exports = {
       'nuxt-mail',
       {
         message: {
-          to: 'vas.box@mail.ru',
+          to: 'b.o.o.m.i.k@yandex.ru',
         },
         smtp: {
           host: 'smtp.yandex.ru',
@@ -208,14 +208,6 @@ module.exports = {
     extend(config, ctx) {
       // const ORIGINAL_TEST = '/\\.(png|jpe?g|gif|svg|webp)$/i';
       const ORIGINAL_TEST = '/\\.(png|jpe?g|gif|webp)$/i';
-      const vueSvgLoader = [
-        {
-          loader: 'vue-svg-loader',
-          options: {
-            svgo: false
-          }
-        }
-      ];
       const imageMinPlugin = new ImageminPlugin({
         pngquant: {
           quality: '5-30',
@@ -253,66 +245,6 @@ module.exports = {
           ];
         }
       });
-      // Create the custom SVG rule
-      // const svgRule = {
-      //   test: /\.svg$/,
-      //   oneOf: [
-      //     {
-      //       resourceQuery: /inline/,
-      //       use: vueSvgLoader
-      //     },
-      //     {
-      //       resourceQuery: /data/,
-      //       loader: 'url-loader'
-      //     },
-      //     {
-      //       resourceQuery: /raw/,
-      //       loader: 'raw-loader'
-      //     },
-      //     {
-      //       loader: 'file-loader' // By default, always use file-loader
-      //     }
-      //   ]
-      // }
-
-      // const svgRule = {
-      //   test: /\.svg$/i,
-      //   oneOf: [
-      //     {
-      //       resourceQuery: /inline/,
-      //       use: vueSvgLoader,
-      //     },
-      //     {
-      //       resourceQuery: /data/,
-      //       use: {
-      //         loader: "url-loader",
-      //         options: { esModule: false },
-      //       },
-      //     },
-      //     {
-      //       resourceQuery: /raw/,
-      //       use: {
-      //         loader: "raw-loader",
-      //         options: { esModule: false },
-      //       },
-      //     },
-      //     {
-      //       resourceQuery: /sprite/,
-      //       use: {
-      //         loader: "svg-sprite-loader",
-      //         options: {},
-      //       },
-      //     },
-      //     {
-      //       use: {
-      //         loader: "file-loader",
-      //         options: { esModule: false },
-      //       },
-      //     },
-      //   ],
-      // }
-
-      //  config.module.rules.push(svgRule) // Actually add the rule
     },
   },
 };

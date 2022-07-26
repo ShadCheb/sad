@@ -8,13 +8,43 @@
     @cancel="onClose"
   >
     <div v-if="products" :class="$style.catalogModal">
-      <div :class="$style.cartInput">
-        <a-input
-          v-model="inputValue"
-          :max-length="25"
-          placeholder="Номер телефона"
-          @change="changeInput"
-        />
+      <div :class="$style.cartData">
+        <div :class="$style.cartRow">
+          <div :class="$style.cartInput">
+            <a-input
+              v-model="phone"
+              :max-length="25"
+              placeholder="Номер телефона"
+              @change="changeInput"
+            />
+          </div>
+        </div>
+        <div :class="$style.cartRow">
+          <a-radio-group v-model="delivery" button-style="solid">
+            <a-radio-button value="delivery">
+              Доставка
+            </a-radio-button>
+            <a-radio-button value="pickup">
+              Самовывоз
+            </a-radio-button>
+          </a-radio-group>
+        </div>
+        <div :class="$style.cartRow">
+          <a-input
+            v-if="delivery === 'delivery'"
+            v-model="addressDelivery"
+            :max-length="200"
+            placeholder="Адрес доставки"
+          />
+          <a-radio-group v-if="delivery === 'pickup'" v-model="addressPickup">
+            <a-radio :style="{display: 'flex', alignItems: 'center', marginBottom: '5px'}" value="nursery">
+              ул. Еловая, д. 3, Питомник "Ванюшкин Сад"
+            </a-radio>
+            <a-radio :style="{display: 'flex', alignItems: 'center'}" value="market">
+              ул. Юрия Гагарина, д. 1 к. 1, Центральный рынок
+            </a-radio>
+          </a-radio-group>
+        </div>
       </div>
       <div :class="$style.cartHeader">
         <div :class="$style.cartName">Наименование</div>
@@ -54,7 +84,14 @@ export default {
   data() {
     return {
       width: WIDTH,
-      inputValue: '',
+      phone: '',
+      addressDelivery: '',
+      addressPickup: 'nursery',
+      delivery: 'pickup',
+      addresses: {
+        nursery: 'ул. Еловая, д. 3, Питомник "Ванюшкин Сад"',
+        market: 'ул. Юрия Гагарина, д. 1 к. 1, Центральный рынок'
+      }
     };
   },
   computed: {
@@ -100,7 +137,7 @@ export default {
       changeVisibleMenu: 'cart/changeVisibleMenu',
     }),
     onOrder() {
-      if (!this.inputValue || !this.products.length) {
+      if (!this.phone || !this.products.length || (this.delivery === 'delivery' && !this.addressDelivery)) {
         notification.open({
           message: 'Ошибка',
           description:
@@ -110,9 +147,13 @@ export default {
         return;
       }
 
-      this.order(this.inputValue);
+      this.order({
+        phone: this.phone,
+        delivery: this.delivery,
+        address: this.delivery === 'delivery' ? this.addressDelivery : this.addresses[this.addressPickup]
+      });
       this.changeVisibleMenu();
-      this.inputValue = '';
+      this.phone = '';
     },
 
     getDimensions() {
@@ -140,9 +181,9 @@ export default {
     },
 
     changeInput() {
-      const numbers = this.inputValue.match(/\d/g).join('');
+      const numbers = this.phone.match(/\d/g).join('');
 
-      this.inputValue = numbers;
+      this.phone = numbers;
     },
   },
 };

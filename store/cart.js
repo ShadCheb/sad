@@ -65,22 +65,26 @@ export const actions = {
   changeVisibleMenu({ commit }) {
     commit('SET_CHANGE_CART_VISIBLE');
   },
-  async order({ commit, state }, phone) {
+  async order({ commit, state }, data) {
+    const productsList = state.products.map(product => {
+      return `<li><p>Наименование: ${product.product?.title || '-'}</p>` +
+        `<p>Количество: ${product.qty}</p>` +
+        `<p>Цена: ${product.product?.price?.text || '0'}<p></li>`;
+    });
+    const productsListTags = `<ul>${productsList.join('')}</ul>`
+
     try {
       this.$mail.send({
         from: 't3.t3st@yandex.ru',
         subject: 'Incredible',
-        text: JSON.stringify({
-          phone,
-          products: state.products.map(product => ({
-            name: product.product?.title || '-',
-            qty: product.qty,
-            price: product.product?.price?.text || '0',
-          }))
-        }),
+        html: `<p><b>Телефон:</b> ${data.phone}</p>` + 
+          `<p><b>Товар:</b> ${productsListTags}</p>` + 
+          `<p><b>Доставка:</b> ${data.delivery === 'delivery' ? 'Доставка' : 'Самовывоз'}</p>` +
+          `<p><b>Адрес:</b> ${data.address}</p>`
       });
 
       await commit('CHANGE_SUCCESS', true);
+      await commit('REMOVE_PRODUCTS');
       setTimeout(() => {
         commit('CHANGE_SUCCESS', false);
       }, 300);
