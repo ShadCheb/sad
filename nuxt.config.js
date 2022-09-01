@@ -77,8 +77,8 @@ module.exports = {
           port: 465,
           secure: true,
           auth: {
-            user: 't3.t3st@yandex.ru',
-            pass: 'Rapira15'
+            user: 'pochta@tirax.pro',
+            pass: 'Zxcvbn!2345',
           },
         },
       },
@@ -102,7 +102,7 @@ module.exports = {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#optionss
-    proxy: true
+    proxy: true,
   },
   // proxy: [
   //   'http://87.249.53.232',
