@@ -2,7 +2,7 @@ export const state = () => ({
   visible: false,
   products: [],
   success: false,
-  error: ''
+  error: '',
 });
 
 export const mutations = {
@@ -49,7 +49,7 @@ export const mutations = {
   },
   SET_ERROR(state, value) {
     state.error = value;
-  }
+  },
 };
 
 export const actions = {
@@ -66,21 +66,26 @@ export const actions = {
     commit('SET_CHANGE_CART_VISIBLE');
   },
   async order({ commit, state }, data) {
-    const productsList = state.products.map(product => {
-      return `<li><p>Наименование: ${product.product?.title || '-'}</p>` +
+    const productsList = state.products.map((product) => {
+      return (
+        `<li><p>Наименование: ${product.product?.title || '-'}</p>` +
         `<p>Количество: ${product.qty}</p>` +
-        `<p>Цена: ${product.product?.price?.text || '0'}<p></li>`;
+        `<p>Цена: ${product.product?.price?.text || '0'}<p></li>`
+      );
     });
-    const productsListTags = `<ul>${productsList.join('')}</ul>`
+    const productsListTags = `<ul>${productsList.join('')}</ul>`;
 
     try {
       this.$mail.send({
-        from: 't3.t3st@yandex.ru',
+        from: 'pochta@tirax.pro',
         subject: 'Incredible',
-        html: `<p><b>Телефон:</b> ${data.phone}</p>` + 
-          `<p><b>Товар:</b> ${productsListTags}</p>` + 
-          `<p><b>Доставка:</b> ${data.delivery === 'delivery' ? 'Доставка' : 'Самовывоз'}</p>` +
-          `<p><b>Адрес:</b> ${data.address}</p>`
+        html:
+          `<p><b>Телефон:</b> ${data.phone}</p>` +
+          `<p><b>Товар:</b> ${productsListTags}</p>` +
+          `<p><b>Доставка:</b> ${
+            data.delivery === 'delivery' ? 'Доставка' : 'Самовывоз'
+          }</p>` +
+          `<p><b>Адрес:</b> ${data.address}</p>`,
       });
 
       await commit('CHANGE_SUCCESS', true);
@@ -88,8 +93,11 @@ export const actions = {
       setTimeout(() => {
         commit('CHANGE_SUCCESS', false);
       }, 300);
-    } catch(err) {
-      await commit('SET_ERROR', 'При отправке произошла ошибка. Попробуйте оформить заказ позже или позвоните для этого по телефону');
+    } catch (err) {
+      await commit(
+        'SET_ERROR',
+        'При отправке произошла ошибка. Попробуйте оформить заказ позже или позвоните для этого по телефону'
+      );
       setTimeout(() => {
         commit('SET_ERROR', '');
       }, 300);
